@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tasks</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cerulean/bootstrap.min.css">
+	<style>
+	.del:checked + span{
+		color: red;
+	}
+	.task-list{
+		list-style: none;
+	}
+	.well {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+	
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Tasks</a>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  </div>
+</nav>
+
+<div class="container">
+	<br>
+	<form method="post" action="/task/add">
+		
+		<input type="text" name="task" placeholder="Add Task">
+		<input type="submit" value="submit">
+	</form>
+	<br>
+
+	<h3><%= title %></h3>
+
+	<form method="post" action="/task/delete">
+		<ul class="task-list">
+		<% tasks.forEach((task) => { %>
+		<li>
+			<label>
+				<input type="checkbox" name="tasks" class="del" value="<%= task %>">
+				<span><%=task %></span>
+			</label>
+		</li>
+		<% }) %>
+		</ul>
+		<input type="submit" value="Remove">
+	</form>
+	<br>
+
+	<div class="well">
+	<h3>Next Call</h3>
+	Name: <%= call.name %><br>
+	Phone: <%= call.phone %><br>
+	Date & Time: <%= call.time %>
+	</div>
+	<br><br>
+
+	<div class="well">
+	<h3>Edit next call</h3>
+	<form method="post" action="/call/add">
+		
+		<input type="text" name="name" placeholder="Task Name">
+		<br><br>
+		
+		<input type="text" name="phone" placeholder="Phone">
+		<br><br>
+
+		<input type="text" name="time" placeholder="Day & Time">
+		<br><br>
+		<input type="submit" value="submit">
+		<br><br>
+	</form>
+	</div>
+</div>
+
+
+</body>
+</html>
+
+
+
